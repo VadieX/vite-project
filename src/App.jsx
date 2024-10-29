@@ -1,40 +1,26 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
 import 'bootstrap/dist/css/bootstrap.css';
-import {data} from '../module-data.js';
+import {data} from './data/module-data.js';
+import { Route, Routes } from 'react-router-dom';
+import RootLayout from './layouts/RootLayout.jsx';
+import Lab1Page from './pages/Lab1Page.jsx';
+import PeoplePage from './pages/PeoplePage.jsx';
+import NotfoundPage from './pages/NotfoundPage.jsx';
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
-    <div>
-      <div>
-        <a href="https://vitejs.dev/" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev/" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React  Simple React project</h1>
-      <div className="card">
-        <button className="btn btn-primary" onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <div className="read-the-docs">
-        {data.map((element, index) => (
-          <p key={index}>
-            <strong>Name:</strong> {element.name} <strong>Birthdate:</strong> {element.birth} <strong>Eyes:</strong> {element.eyes}
-          </p>
-        ))}
-      </div>
-    </div>
+    <RootLayout>
+      <Routes>
+        <Route path="/lab1" element={<Lab1Page></Lab1Page>} />
+        <Route path="/lab2" element={<h1>Labolatorium 2</h1>} />
+        <Route path="/people/:id" element={<PeoplePage/>} />
+        <Route path="*" element={<NotfoundPage></NotfoundPage>} />
+      </Routes>
+    </RootLayout>
   )
 }
 
