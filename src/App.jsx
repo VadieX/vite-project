@@ -4,6 +4,7 @@ import RootLayout from './layouts/RootLayout';
 import Home from './pages/HomePage.jsx';
 import Lab1 from './pages/Lab1Page.jsx';
 import Lab2 from './pages/Lab2Page.jsx';
+import Lab3 from './pages/Lab3Page.jsx';
 import NotFound from './pages/NotfoundPage.jsx';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/lab1" element={<Lab1 />} />
         <Route path="/lab2/:id" element={<Lab2 />} />
+        <Route path="/lab3" element={<Lab3 />} />
         <Route path="/*" element={<NotFound />} />
       </Routes>
     </RootLayout>

@@ -2,6 +2,7 @@ import React from 'react';
 import Home from '../pages/HomePage.jsx';
 import Lab1 from '../pages/Lab1Page.jsx';
 import Lab2 from '../pages/Lab2Page.jsx';
+import Lab3 from '../pages/Lab3Page.jsx';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 
 function NavBar() {
@@ -21,6 +22,12 @@ function NavBar() {
             url: '/lab2/1',
             urlPattern: '/lab2/:id',
             element: <Lab2 />
+        },
+        { id: 4, 
+            label: 'Labolatorium 3', 
+            url: '/lab3',
+            urlPattern: '/lab3',
+            element: <Lab3 />
         },
     ];
 

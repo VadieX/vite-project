@@ -31,17 +31,19 @@ Promise.all([
         let name = names[~~(Math.random() * names.length)];
         let birth = birthdates[~~(Math.random() * birthdates.length)];
         let eyeColor = eyes[~~(Math.random() * eyes.length)];
+        let ratingStars = ~~(Math.random() * 11);
 
-        content += `  {\n    id: ${i + 1},\n    name: "${name}",\n    birth: "${birth}",\n    eyes: "${eyeColor}"\n  },\n`;
+        content += `  {\n    id: ${i + 1},\n    name: "${name}",\n    birth: "${birth}",\n    eyes: "${eyeColor}",\n    ratingStars: ${ratingStars}\n  },\n`;
     }
     content += "];";
 
-    fs.writeFile('/src/data/module-data.js', content, (err) => {
+    fs.writeFile('./src/data/module-data.js', content, (err) => {
         if (err) {
-           console.error(err);
+            console.error('Error writing file:', err);
+        } else {
+            console.log('File has been written');
         }
-        console.log("module-data.js generated");
     });
 }).catch(err => {
-    console.error("module-data.js error", err);
+    console.error('Error reading files:', err);
 });
