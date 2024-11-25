@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
 import RatingBar from './RatingBar';
 
-const ProfileCard = ({ name, birth, eyes, ratingStars }) => {
+const ProfileCard = ({ id, name, birth, eyes, ratingStars, dispatch }) => {
   const [rate, setRate] = useState(ratingStars);
   const [show, setShow] = useState(false);
 
@@ -11,6 +11,7 @@ const ProfileCard = ({ name, birth, eyes, ratingStars }) => {
 
   const handleRateChange = (newRate) => {
     setRate(newRate);
+    dispatch({ type: 'rate', payload: { id, rating: newRate } });
     handleClose();
   };
 
@@ -27,7 +28,7 @@ const ProfileCard = ({ name, birth, eyes, ratingStars }) => {
         </Card.Body>
         <Card.Footer className='d-flex justify-content-between'>
           <Button variant="primary" onClick={() => alert('Edit functionality not implemented')}>Edit</Button>
-          <Button variant="danger" onClick={() => dispatch({type: "delete"})}>Delete</Button>
+          <Button variant="danger" onClick={() => dispatch({ type: 'delete', payload: { id } })}>Delete</Button>
           <Button variant="success" onClick={handleShow}>Rate</Button>
         </Card.Footer>
       </Card>

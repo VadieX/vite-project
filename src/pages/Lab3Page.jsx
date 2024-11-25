@@ -6,7 +6,8 @@ import ProfileCard from '../components/ProfileCard.jsx';
 function Lab3Page() {
   return (
     <FlexContainer element={ProfileCard} data={data} />
-  );
+);
+
 }
 
 export default Lab3Page;
