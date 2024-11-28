@@ -2,16 +2,27 @@ export default function AppReducer(state, action) {
     switch (action.type) {
         case "edit":
             return state;
+
         case "rate": {
-            const updatedProfiles = state.profiles.map(profile =>
-                profile.id === action.payload.id ? { ...profile, rating: action.payload.rating } : profile
+            const updatedItems = (state.items).map(item =>
+                item.id === action.payload.id
+                    ? { ...item, rating: action.payload.rating }
+                    : item
             );
-            return { ...state, profiles: updatedProfiles };
+            return { ...state, items: updatedItems };
         }
+
         case "delete": {
-            const updatedProfiles = state.profiles.filter(profile => profile.id !== action.payload.id);
-            return { ...state, profiles: updatedProfiles };
+            const updatedItems = state.item.filter(item => item.id !== action.payload.id);
+            console.log("aaa", updatedItems);
+            return { ...state, items: updatedItems };
+            
         }
+
+        case "add": {
+            return { ...state, items: [...state.items, action.payload] };
+        }
+
         default:
             return state;
     }
