@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Card, Button, Modal } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import RatingBar from './RatingBar';
+import AppContext from '../data/AppContext';
 
-const ProfileCard = ({ id, name, birth, eyes, ratingStars, dispatch }) => {
+const ProfileCard = ({ id }) => {
+  const context = useContext(AppContext);
+  const items = context.items;
+  const dispatch = context.dispatch;
+
+  const item = items.find(item => item.id === id);
+  const { name, birth, eyes, ratingStars } = item;
+  
   const [rate, setRate] = useState(ratingStars);
   const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
@@ -13,6 +23,10 @@ const ProfileCard = ({ id, name, birth, eyes, ratingStars, dispatch }) => {
     setRate(newRate);
     dispatch({ type: 'rate', payload: { id, rating: newRate } });
     handleClose();
+  };
+
+  const handleEdit = () => {
+    navigate(`/lab4/edit/${id}`);
   };
 
   return (
@@ -27,7 +41,7 @@ const ProfileCard = ({ id, name, birth, eyes, ratingStars, dispatch }) => {
           </Card.Text>
         </Card.Body>
         <Card.Footer className='d-flex justify-content-between'>
-          <Button variant="primary" onClick={() => alert('Edit functionality not implemented')}>Edit</Button>
+          <Button variant="primary" onClick={handleEdit}>Edit</Button>
           <Button variant="danger" onClick={() => dispatch({ type: 'delete', payload: { id } })}>Delete</Button>
           <Button variant="success" onClick={handleShow}>Rate</Button>
         </Card.Footer>
